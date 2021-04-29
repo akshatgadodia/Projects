@@ -49,7 +49,7 @@ public class HomePage {
 				
 			}
 		});
-		btnNewButton.setBounds(187, 185, 85, 21);
+		btnNewButton.setBounds(156, 190, 157, 48);
 		frame.getContentPane().add(btnNewButton);
 	}
 }

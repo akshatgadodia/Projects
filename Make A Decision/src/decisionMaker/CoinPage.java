@@ -1,7 +1,6 @@
 package decisionMaker;
 
-import java.awt.BorderLayout;
-import javax.swing.AbstractButton;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -17,6 +16,10 @@ import java.awt.Font;
 
 public class CoinPage extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField tf1;
 	private JTextField tf2;

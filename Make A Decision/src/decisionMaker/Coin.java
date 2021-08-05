@@ -25,12 +25,10 @@ public class Coin {
 		int x = random.nextInt(2);   
 		if(x==1)
 			{
-
 				return choice1;
 			}
 		else
 			{
-
 				return choice2;
 			}
 				

@@ -13,6 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
 import java.awt.Font;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class CoinPage extends JFrame {
 
@@ -29,6 +32,14 @@ public class CoinPage extends JFrame {
 	private JLabel lb4;
 	private int c1_count=0;
 	private int c2_count=0;
+	private JMenuBar menuBar;
+	private JMenu mnNewMenu;
+	private JMenu mnNewMenu_1;
+	private JMenu mnNewMenu_2;
+	private JMenuItem mntmNewMenuItem;
+	private JMenuItem mntmNewMenuItem_1;
+	private JMenuItem mntmNewMenuItem_2;
+	private JMenuItem mntmNewMenuItem_3;
 
 	/**
 	 * Launch the application.
@@ -72,11 +83,9 @@ public class CoinPage extends JFrame {
 				lb2.setText(c1_count+"");
 				lb3.setText(die.getChoice2());
 				lb4.setText(c2_count+"");
-				
-				System.out.println(result);
 			}
 		});
-		btnNewButton.setBounds(253, 260, 155, 35);
+		btnNewButton.setBounds(217, 262, 155, 35);
 		contentPane.add(btnNewButton);
 		
 		JLabel label1 = new JLabel("Make A Decision Using Coin ");
@@ -120,5 +129,53 @@ public class CoinPage extends JFrame {
 		lb4 = new JLabel("");
 		lb4.setBounds(452, 330, 85, 21);
 		contentPane.add(lb4);
+		
+		menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 109, 22);
+		contentPane.add(menuBar);
+		
+		mnNewMenu = new JMenu("New");
+		menuBar.add(mnNewMenu);
+		
+		mntmNewMenuItem = new JMenuItem("New File");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CoinPage cpg = new CoinPage();
+				cpg.setVisible(true);
+				cpg.dispose();
+			}
+			
+		});
+		mnNewMenu.add(mntmNewMenuItem);
+		
+		mntmNewMenuItem_1 = new JMenuItem("Quit");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		mnNewMenu.add(mntmNewMenuItem_1);
+		
+		mnNewMenu_1 = new JMenu("Edit");
+		menuBar.add(mnNewMenu_1);
+		
+		mntmNewMenuItem_2 = new JMenuItem("Clear");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tf1.setText("");
+				tf2.setText("");
+				lb1.setText("");
+				lb4.setText("");
+				lb3.setText("");
+				lb2.setText("");
+			}
+		});
+		mnNewMenu_1.add(mntmNewMenuItem_2);
+		
+		mnNewMenu_2 = new JMenu("Help");
+		menuBar.add(mnNewMenu_2);
+		
+		mntmNewMenuItem_3 = new JMenuItem("About");
+		mnNewMenu_2.add(mntmNewMenuItem_3);
 	}
 }

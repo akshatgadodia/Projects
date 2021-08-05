@@ -1,5 +1,7 @@
 package decisionMaker;
 
+import java.util.Random;
+
 public class Dice {
 	private String choice1 = "Choice 1";
 	private String choice2 = "Choice 2";
@@ -7,6 +9,7 @@ public class Dice {
 	private String choice4 = "Choice 4";
 	private String choice5 = "Choice 5";
 	private String choice6 = "Choice 6";
+	private int numch=2;
 	public String getChoice1() {
 		return choice1;
 	}
@@ -43,5 +46,23 @@ public class Dice {
 	public void setChoice6(String choice6) {
 		this.choice6 = choice6;
 	}
-	
+	public int getNumch() {
+		return numch;
+	}
+	public void setNumch(int numch) {
+		this.numch = numch;
+	}
+	public String rollDie() {
+		Random random = new Random(); 
+		int x = random.nextInt(numch);  
+		switch(x) {
+		case 0: return choice1;
+		case 1: return choice2;
+		case 2: return choice3;
+		case 3: return choice4;
+		case 4: return choice5;
+		case 5: return choice6;
+		default: return null;
+		}
+	}
 }

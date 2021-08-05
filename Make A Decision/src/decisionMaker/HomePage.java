@@ -1,7 +1,5 @@
 package decisionMaker;
-
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;

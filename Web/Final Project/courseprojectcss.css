@@ -1,0 +1,54 @@
+*{
+  padding : 0;
+  margin : 0;
+}
+body{
+  background-color: #e9eef7;
+}
+.nav{
+  padding-top: 15px;
+  text-align: center;
+  background-color: #081e3f;
+  height: 35px;
+}
+.navitem{
+  font-weight: bolder;
+  text-decoration: underline;
+  margin: 20px;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+}
+.nav a{
+  color: white;
+}
+#cap{
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 24px;
+  padding: 10px;
+}
+table{
+  font-size: 20px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.tabcity img{
+  width:  400px;
+  height: 250px;
+  background-color: white;
+  padding: 0px;
+  margin: 0px;
+}
+td{
+  padding: 15px;
+}
+p{
+  padding-top: 8px;
+  background-color: white;
+  height: 30px;
+  margin: -4px;
+
+}

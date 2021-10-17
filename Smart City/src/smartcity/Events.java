@@ -44,7 +44,7 @@ public class Events extends JFrame {
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setForeground(new Color(30, 144, 255));
 		lblNewLabel_1.setFont(new Font("Algerian", Font.BOLD, 45));
-		lblNewLabel_1.setBounds(150, 0, 312, 67);
+		lblNewLabel_1.setBounds(50, 0, 312, 67);
 		getContentPane().add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Contact");
@@ -58,24 +58,31 @@ public class Events extends JFrame {
 		btnNewButton.setForeground(new Color(255, 192, 203));
 		btnNewButton.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton.setBackground(new Color(30, 144, 255));
-		btnNewButton.setBounds(1394, 18, 110, 25);
+		btnNewButton.setBounds(1023, 18, 110, 25);
 		getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("User");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				User user = new User();
-				user.setVisible(true);
-				dispose();
+				if(HomePage.userData.isAuthentiation()) {
+					UserProfile userPro = new UserProfile();
+					userPro.setVisible(true);
+					dispose();
+				}
+				else {
+					User user = new User();
+					user.setVisible(true);
+					dispose();
+				}
 			}
 		});
 		btnNewButton_1.setForeground(new Color(255, 192, 203));
 		btnNewButton_1.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton_1.setBackground(new Color(30, 144, 255));
-		btnNewButton_1.setBounds(1034, 18, 110, 25);
+		btnNewButton_1.setBounds(653, 18, 110, 25);
 		getContentPane().add(btnNewButton_1);
 		
-		JButton btnNewButton_1_1 = new JButton("Gallery");
+		JButton btnNewButton_1_1 = new JButton("City Info");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Gallery gallery = new Gallery();
@@ -86,7 +93,7 @@ public class Events extends JFrame {
 		btnNewButton_1_1.setForeground(new Color(255, 192, 203));
 		btnNewButton_1_1.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton_1_1.setBackground(new Color(30, 144, 255));
-		btnNewButton_1_1.setBounds(1274, 18, 110, 25);
+		btnNewButton_1_1.setBounds(893, 18, 120, 25);
 		getContentPane().add(btnNewButton_1_1);
 		
 		JButton btnNewButton_1_1_1 = new JButton("Events");
@@ -100,7 +107,7 @@ public class Events extends JFrame {
 		btnNewButton_1_1_1.setForeground(new Color(255, 192, 203));
 		btnNewButton_1_1_1.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton_1_1_1.setBackground(new Color(30, 144, 255));
-		btnNewButton_1_1_1.setBounds(1154, 18, 110, 25);
+		btnNewButton_1_1_1.setBounds(773, 18, 110, 25);
 		getContentPane().add(btnNewButton_1_1_1);
 		
 		JButton btnNewButton_1_2 = new JButton("About");
@@ -114,7 +121,7 @@ public class Events extends JFrame {
 		btnNewButton_1_2.setForeground(new Color(255, 192, 203));
 		btnNewButton_1_2.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton_1_2.setBackground(new Color(30, 144, 255));
-		btnNewButton_1_2.setBounds(914, 18, 110, 25);
+		btnNewButton_1_2.setBounds(533, 18, 110, 25);
 		getContentPane().add(btnNewButton_1_2);
 		
 		JButton btnNewButton_1_2_1 = new JButton("Home");
@@ -126,7 +133,7 @@ public class Events extends JFrame {
 		btnNewButton_1_2_1.setForeground(new Color(255, 192, 203));
 		btnNewButton_1_2_1.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton_1_2_1.setBackground(new Color(30, 144, 255));
-		btnNewButton_1_2_1.setBounds(794, 18, 110, 25);
+		btnNewButton_1_2_1.setBounds(413, 18, 110, 25);
 		getContentPane().add(btnNewButton_1_2_1);
 		
 		JLabel lblNewLabel = new JLabel("Events");
@@ -140,6 +147,16 @@ public class Events extends JFrame {
 		separator.setForeground(Color.WHITE);
 		separator.setBounds(0, 60, 1529, 33);
 		getContentPane().add(separator);
+		
+		JLabel userLabel = new JLabel("");
+		userLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		userLabel.setForeground(new Color(30, 144, 255));
+		userLabel.setFont(new Font("Algerian", Font.PLAIN, 24));
+		userLabel.setBounds(1180, 0, 312, 67);
+		getContentPane().add(userLabel);
+		HomePage HomePage = new HomePage();
+		if(HomePage.getUserData().isAuthentiation()) {
+		userLabel.setText(HomePage.getUserData().getUserId());}
 		
 		setBounds(0, 40, 1543, 1258);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

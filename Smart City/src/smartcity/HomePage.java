@@ -27,6 +27,8 @@ import javax.swing.JEditorPane;
 public class HomePage {
 
 	private JFrame frame;
+	static UserData userData = new UserData();
+	JLabel userLabel;
 
 	/**
 	 * Launch the application.
@@ -49,6 +51,7 @@ public class HomePage {
 	 */
 	public HomePage() {
 		initialize();
+		
 	}
 
 	/**
@@ -79,14 +82,14 @@ public class HomePage {
 		frame.getContentPane().add(lblNewLabel_1_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("Smart City");
-		lblNewLabel_1.setBounds(150, 0, 312, 67);
+		lblNewLabel_1.setBounds(50, 0, 312, 67);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Algerian", Font.BOLD, 45));
 		lblNewLabel_1.setForeground(new Color(30, 144, 255));
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("Contact");
-		btnNewButton.setBounds(1394, 18, 110, 25);
+		btnNewButton.setBounds(1023, 18, 110, 25);
 		btnNewButton.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton.setForeground(new Color(255, 192, 203));
 		btnNewButton.setBackground(new Color(30, 144, 255));
@@ -99,11 +102,18 @@ public class HomePage {
 		frame.getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("User");
-		btnNewButton_1.setBounds(1034, 18, 110, 25);
+		btnNewButton_1.setBounds(653, 18, 110, 25);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				User user = new User();
-				user.setVisible(true);
+				if(getUserData().isAuthentiation()) {
+					UserProfile userPro = new UserProfile();
+					userPro.setVisible(true);
+				}
+				else {
+					User user = new User();
+					user.setVisible(true);
+				}
+				
 			}
 		});
 		btnNewButton_1.setForeground(new Color(255, 192, 203));
@@ -111,14 +121,14 @@ public class HomePage {
 		btnNewButton_1.setBackground(new Color(30, 144, 255));
 		frame.getContentPane().add(btnNewButton_1);
 		
-		JButton btnNewButton_1_1 = new JButton("Gallery");
+		JButton btnNewButton_1_1 = new JButton("City Info");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Gallery gallery = new Gallery();
 				gallery.setVisible(true);
 			}
 		});
-		btnNewButton_1_1.setBounds(1274, 18, 110, 25);
+		btnNewButton_1_1.setBounds(893, 18, 120, 25);
 		btnNewButton_1_1.setForeground(new Color(255, 192, 203));
 		btnNewButton_1_1.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton_1_1.setBackground(new Color(30, 144, 255));
@@ -131,7 +141,7 @@ public class HomePage {
 				event.setVisible(true);
 			}
 		});
-		btnNewButton_1_1_1.setBounds(1154, 18, 110, 25);
+		btnNewButton_1_1_1.setBounds(773, 18, 110, 25);
 		btnNewButton_1_1_1.setForeground(new Color(255, 192, 203));
 		btnNewButton_1_1_1.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton_1_1_1.setBackground(new Color(30, 144, 255));
@@ -144,7 +154,7 @@ public class HomePage {
 				about.setVisible(true);
 			}
 		});
-		btnNewButton_1_2.setBounds(914, 18, 110, 25);
+		btnNewButton_1_2.setBounds(533, 18, 110, 25);
 		btnNewButton_1_2.setForeground(new Color(255, 192, 203));
 		btnNewButton_1_2.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton_1_2.setBackground(new Color(30, 144, 255));
@@ -159,7 +169,7 @@ public class HomePage {
 		btnNewButton_1_2_1.setForeground(new Color(255, 192, 203));
 		btnNewButton_1_2_1.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton_1_2_1.setBackground(new Color(30, 144, 255));
-		btnNewButton_1_2_1.setBounds(794, 18, 110, 25);
+		btnNewButton_1_2_1.setBounds(413, 18, 110, 25);
 		frame.getContentPane().add(btnNewButton_1_2_1);
 		
 		JEditorPane dtrpnJaipurIsThe = new JEditorPane();
@@ -168,5 +178,22 @@ public class HomePage {
 		dtrpnJaipurIsThe.setBackground(new Color(255, 192, 203));
 		dtrpnJaipurIsThe.setBounds(10, 660, 1513, 138);
 		frame.getContentPane().add(dtrpnJaipurIsThe);
+		
+		userLabel = new JLabel("");
+		userLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		userLabel.setForeground(new Color(30, 144, 255));
+		userLabel.setFont(new Font("Algerian", Font.PLAIN, 24));
+		userLabel.setBounds(1180, 0, 312, 67);
+		frame.getContentPane().add(userLabel);
+		if(getUserData().isAuthentiation()) {
+		userLabel.setText(getUserData().getUserId());}
+	}
+
+	public static UserData getUserData() {
+		return userData;
+	}
+
+	public static void setUserData(UserData userData) {
+		HomePage.userData = userData;
 	}
 }

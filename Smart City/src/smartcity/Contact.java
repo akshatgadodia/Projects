@@ -28,6 +28,7 @@ public class Contact extends JFrame {
 	private JTextField txtLastName;
 	private JTextField txtEmail;
 	private JTextField txtPhoneNo;
+	private JLabel userLabel;
 
 	/**
 	 * Launch the application.
@@ -63,24 +64,31 @@ public class Contact extends JFrame {
 		btnNewButton.setForeground(new Color(255, 192, 203));
 		btnNewButton.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton.setBackground(new Color(30, 144, 255));
-		btnNewButton.setBounds(1394, 18, 110, 25);
+		btnNewButton.setBounds(1023, 18, 110, 25);
 		getContentPane().add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("User");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				User user = new User();
-				user.setVisible(true);
-				dispose();
+				if(HomePage.userData.isAuthentiation()) {
+					UserProfile userPro = new UserProfile();
+					userPro.setVisible(true);
+					dispose();
+				}
+				else {
+					User user = new User();
+					user.setVisible(true);
+					dispose();
+				}
 			}
 		});
 		btnNewButton_1.setForeground(new Color(255, 192, 203));
 		btnNewButton_1.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton_1.setBackground(new Color(30, 144, 255));
-		btnNewButton_1.setBounds(1034, 18, 110, 25);
+		btnNewButton_1.setBounds(653, 18, 110, 25);
 		getContentPane().add(btnNewButton_1);
 		
-		JButton btnNewButton_1_1 = new JButton("Gallery");
+		JButton btnNewButton_1_1 = new JButton("City Info");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Gallery gallery = new Gallery();
@@ -91,7 +99,7 @@ public class Contact extends JFrame {
 		btnNewButton_1_1.setForeground(new Color(255, 192, 203));
 		btnNewButton_1_1.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton_1_1.setBackground(new Color(30, 144, 255));
-		btnNewButton_1_1.setBounds(1274, 18, 110, 25);
+		btnNewButton_1_1.setBounds(893, 18, 120, 25);
 		getContentPane().add(btnNewButton_1_1);
 		
 		JButton btnNewButton_1_1_1 = new JButton("Events");
@@ -105,7 +113,7 @@ public class Contact extends JFrame {
 		btnNewButton_1_1_1.setForeground(new Color(255, 192, 203));
 		btnNewButton_1_1_1.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton_1_1_1.setBackground(new Color(30, 144, 255));
-		btnNewButton_1_1_1.setBounds(1154, 18, 110, 25);
+		btnNewButton_1_1_1.setBounds(773, 18, 110, 25);
 		getContentPane().add(btnNewButton_1_1_1);
 		
 		JButton btnNewButton_1_2 = new JButton("About");
@@ -119,18 +127,20 @@ public class Contact extends JFrame {
 		btnNewButton_1_2.setForeground(new Color(255, 192, 203));
 		btnNewButton_1_2.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton_1_2.setBackground(new Color(30, 144, 255));
-		btnNewButton_1_2.setBounds(914, 18, 110, 25);
+		btnNewButton_1_2.setBounds(533, 18, 110, 25);
 		getContentPane().add(btnNewButton_1_2);
 		
 		JButton btnNewButton_1_2_1 = new JButton("Home");
 		btnNewButton_1_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					dispose();
+				HomePage HomePage = new HomePage();
+				HomePage.userLabel.setText(HomePage.getUserData().getUserId());	
+				dispose();
 			}
 		});
 		
 		JLabel lblNewLabel_1 = new JLabel("Smart City");
-		lblNewLabel_1.setBounds(150, 0, 312, 67);
+		lblNewLabel_1.setBounds(50, 0, 312, 67);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Algerian", Font.BOLD, 45));
 		lblNewLabel_1.setForeground(new Color(30, 144, 255));
@@ -139,7 +149,7 @@ public class Contact extends JFrame {
 		btnNewButton_1_2_1.setForeground(new Color(255, 192, 203));
 		btnNewButton_1_2_1.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton_1_2_1.setBackground(new Color(30, 144, 255));
-		btnNewButton_1_2_1.setBounds(794, 18, 110, 25);
+		btnNewButton_1_2_1.setBounds(413, 18, 110, 25);
 		getContentPane().add(btnNewButton_1_2_1);
 		
 		JLabel lblNewLabel = new JLabel("Contact Us");
@@ -230,6 +240,11 @@ public class Contact extends JFrame {
 		getContentPane().add(txtrYourMessage);
 		
 		JButton btnNewButton_2 = new JButton("SUBMIT");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 		btnNewButton_2.setForeground(new Color(255, 192, 203));
 		btnNewButton_2.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton_2.setBackground(new Color(30, 144, 255));
@@ -243,12 +258,22 @@ public class Contact extends JFrame {
 		lblNewLabel_2.setBounds(0, 662, 1529, 67);
 		getContentPane().add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("akshatgadodia@gmail.com");
+		JLabel lblNewLabel_2_1 = new JLabel("akshatgadodia04@gmail.com");
 		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_2_1.setForeground(new Color(0, 0, 255));
 		lblNewLabel_2_1.setFont(new Font("Algerian", Font.BOLD, 24));
 		lblNewLabel_2_1.setBounds(0, 701, 1529, 67);
 		getContentPane().add(lblNewLabel_2_1);
+		
+		JLabel userLabel = new JLabel("");
+		userLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		userLabel.setForeground(new Color(30, 144, 255));
+		userLabel.setFont(new Font("Algerian", Font.PLAIN, 24));
+		userLabel.setBounds(1180, 0, 312, 67);
+		getContentPane().add(userLabel);
+		HomePage HomePage = new HomePage();
+		if(HomePage.getUserData().isAuthentiation()) {
+		userLabel.setText(HomePage.getUserData().getUserId());}
 		
 		
 		

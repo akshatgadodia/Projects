@@ -8,25 +8,14 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JPasswordField;
 
-public class User extends JFrame {
-	private JTextField txtUsername;
-	private JPasswordField passwordField;
-	HomePage HomePage = new HomePage();
-	JLabel userLabel;
-	
+public class AdminPanel extends JFrame {
 
 	/**
 	 * Launch the application.
@@ -35,7 +24,7 @@ public class User extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					User frame = new User();
+					AdminPanel frame = new AdminPanel();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +36,7 @@ public class User extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public User() {
+	public AdminPanel() {
 		getContentPane().setBackground(new Color(255, 192, 203));
 		getContentPane().setLayout(null);
 		
@@ -57,8 +46,6 @@ public class User extends JFrame {
 		lblNewLabel_1.setFont(new Font("Algerian", Font.BOLD, 45));
 		lblNewLabel_1.setBounds(50, 0, 312, 67);
 		getContentPane().add(lblNewLabel_1);
-		
-		
 		
 		JButton btnNewButton = new JButton("Contact");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -95,7 +82,7 @@ public class User extends JFrame {
 		btnNewButton_1.setBounds(653, 18, 110, 25);
 		getContentPane().add(btnNewButton_1);
 		
-		JButton btnNewButton_1_1 = new JButton("City Info\r\n");
+		JButton btnNewButton_1_1 = new JButton("City Info");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Gallery gallery = new Gallery();
@@ -112,7 +99,7 @@ public class User extends JFrame {
 		JButton btnNewButton_1_1_1 = new JButton("Events");
 		btnNewButton_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Events event = new Events();
+				AdminPanel event = new AdminPanel();
 				event.setVisible(true);
 				dispose();
 			}
@@ -149,7 +136,7 @@ public class User extends JFrame {
 		btnNewButton_1_2_1.setBounds(413, 18, 110, 25);
 		getContentPane().add(btnNewButton_1_2_1);
 		
-		JLabel lblNewLabel = new JLabel("User");
+		JLabel lblNewLabel = new JLabel("Admin Panel\r\n");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(new Color(128, 0, 0));
 		lblNewLabel.setBounds(0, 80, 1529, 67);
@@ -161,102 +148,20 @@ public class User extends JFrame {
 		separator.setBounds(0, 60, 1529, 33);
 		getContentPane().add(separator);
 		
-		JButton btnNewButton_1_2_1_1 = new JButton("ADMIN LOGIN\r\n");
-		btnNewButton_1_2_1_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				AdminLogin adminLogin = new AdminLogin();
-				adminLogin.setVisible(true);
-				dispose();
-			}
-		});
-		btnNewButton_1_2_1_1.setForeground(new Color(255, 192, 203));
-		btnNewButton_1_2_1_1.setFont(new Font("Century", Font.BOLD, 20));
-		btnNewButton_1_2_1_1.setBackground(new Color(30, 144, 255));
-		btnNewButton_1_2_1_1.setBounds(50, 78, 200, 25);
-		getContentPane().add(btnNewButton_1_2_1_1);
-		
-		txtUsername = new JTextField();
-		txtUsername.setEditable(true);
-		txtUsername.setColumns(10);
-		txtUsername.setBackground(new Color(248, 248, 255));
-		txtUsername.setBounds(572, 219, 370, 45);
-		getContentPane().add(txtUsername);
-		
-		JButton btnNewButton_2 = new JButton("Register\r\n");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				RegisterUser RegisterUser = new RegisterUser();
-				RegisterUser.setVisible(true);
-				dispose();
-			}
-		});
-		btnNewButton_2.setForeground(new Color(255, 192, 203));
-		btnNewButton_2.setFont(new Font("Century", Font.BOLD, 20));
-		btnNewButton_2.setBackground(new Color(30, 144, 255));
-		btnNewButton_2.setBounds(572, 500, 150, 45);
-		getContentPane().add(btnNewButton_2);
-		
-		JButton btnNewButton_2_1 = new JButton("Reset Password\r\n");
-		btnNewButton_2_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnNewButton_2_1.setForeground(new Color(255, 192, 203));
-		btnNewButton_2_1.setFont(new Font("Century", Font.BOLD, 20));
-		btnNewButton_2_1.setBackground(new Color(30, 144, 255));
-		btnNewButton_2_1.setBounds(732, 500, 210, 45);
-		getContentPane().add(btnNewButton_2_1);
-		
-		userLabel = new JLabel("\r\n");
+		JLabel userLabel = new JLabel("");
 		userLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		userLabel.setForeground(new Color(30, 144, 255));
 		userLabel.setFont(new Font("Algerian", Font.PLAIN, 24));
 		userLabel.setBounds(1180, 0, 312, 67);
 		getContentPane().add(userLabel);
+		HomePage HomePage = new HomePage();
 		if(HomePage.getUserData().isAuthentiation()) {
 		userLabel.setText(HomePage.getUserData().getUserId());}
-		
-		JButton btnNewButton_2_2 = new JButton("LOGIN");
-		btnNewButton_2_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				HomePage.getUserData().setUserId("akshatgadodia");
-				userLabel.setText(HomePage.getUserData().getUserId());
-				HomePage.getUserData().setAuthentiation(true);
-				UserProfile userPro = new UserProfile();
-				userPro.setVisible(true);
-				dispose();
-				
-			}
-		});
-		btnNewButton_2_2.setForeground(new Color(255, 192, 203));
-		btnNewButton_2_2.setFont(new Font("Century", Font.BOLD, 20));
-		btnNewButton_2_2.setBackground(new Color(30, 144, 255));
-		btnNewButton_2_2.setBounds(674, 400, 162, 56);
-		getContentPane().add(btnNewButton_2_2);
-		
-		passwordField = new JPasswordField();
-		passwordField.setBackground(Color.WHITE);
-		passwordField.setBounds(572, 309, 370, 45);
-		getContentPane().add(passwordField);
-		
-		JLabel lblNewLabel_2 = new JLabel("USERNAME\r\n");
-		lblNewLabel_2.setForeground(Color.BLUE);
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(572, 201, 100, 20);
-		getContentPane().add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_2_1 = new JLabel("PASSWORD\r\n");
-		lblNewLabel_2_1.setForeground(Color.BLUE);
-		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2_1.setBounds(572, 291, 100, 20);
-		getContentPane().add(lblNewLabel_2_1);
 		
 		setBounds(0, 40, 1543, 1258);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	
+		
 		
 	}
 }

@@ -19,6 +19,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 import javax.swing.JPasswordField;
 
 public class User extends JFrame {
@@ -221,12 +226,38 @@ public class User extends JFrame {
 		JButton btnNewButton_2_2 = new JButton("LOGIN");
 		btnNewButton_2_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				HomePage.getUserData().setUserId("akshatgadodia");
-				userLabel.setText(HomePage.getUserData().getUserId());
-				HomePage.getUserData().setAuthentiation(true);
-				UserProfile userPro = new UserProfile();
-				userPro.setVisible(true);
-				dispose();
+				String userid=txtUsername.getText(),password=passwordField.getText(),pass="";
+				try {
+					Class.forName("com.mysql.jdbc.Driver");
+					Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/smartcity", "root", "akshat8138");
+					Statement stmt = conn.createStatement();
+					ResultSet rs = stmt.executeQuery("select * from user where email='"+userid+"';");
+					int k=0;
+					while(rs.next()) {
+						pass=rs.getString("PASSWORD");
+						if (pass.equals(password)&&pass!=null) {
+							//JOptionPane.showMessageDialog(null, "Login Successfully");
+							HomePage.userData.setAuthentiation(true);
+							HomePage.userData.setUserId(userid);
+							userLabel.setText(HomePage.getUserData().getUserId());
+							HomePage.userData.setFname(rs.getString("FIRSTNAME"));
+							HomePage.userData.setLname(rs.getString("LASTNAME"));
+							HomePage.userData.setPassword(pass);
+							HomePage.userData.setSecurityQues(rs.getString("SECURITYQUESTION"));
+							HomePage.userData.setSecurityAns(rs.getString("SECURITYANSWER"));
+							UserProfile user = new UserProfile();
+							user.setVisible(true);
+							dispose();
+							k=1;
+						}
+				    }
+		            if(k==0)
+		            	JOptionPane.showMessageDialog(null, "Password Incorrect");
+					conn.close();
+				}
+				catch(Exception e1) {
+					System.out.println(e1);
+				}
 				
 			}
 		});
@@ -241,7 +272,7 @@ public class User extends JFrame {
 		passwordField.setBounds(572, 309, 370, 45);
 		getContentPane().add(passwordField);
 		
-		JLabel lblNewLabel_2 = new JLabel("USERNAME\r\n");
+		JLabel lblNewLabel_2 = new JLabel("EMAIL");
 		lblNewLabel_2.setForeground(Color.BLUE);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_2.setBounds(572, 201, 100, 20);

@@ -3,6 +3,20 @@ package smartcity;
 public class UserData {
 	private String userId = "";
 	private String Password;
+	private String fname;
+	private String lname;
+	public String getFname() {
+		return fname;
+	}
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+	public String getLname() {
+		return lname;
+	}
+	public void setLname(String lname) {
+		this.lname = lname;
+	}
 	private boolean authentiation = false;
 	private String securityQues;
 	private String securityAns;

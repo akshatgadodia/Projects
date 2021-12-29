@@ -2,11 +2,13 @@ package smartcity;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
+import java.sql.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
@@ -22,6 +24,10 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
 import javax.swing.JPasswordField;
 
 public class RegisterUser extends JFrame {
@@ -29,9 +35,9 @@ public class RegisterUser extends JFrame {
 	private JTextField txtLastName;
 	private JTextField txtEmail;
 	private JTextField txtPhoneNo;
-	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
 	private JTextField txtSecurityAnswer;
+	private JPasswordField passwordField = new JPasswordField();
 	HomePage HomePage = new HomePage();
 
 	/**
@@ -230,8 +236,38 @@ public class RegisterUser extends JFrame {
 		JButton btnNewButton_2 = new JButton("REGISTER");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(HomePage.userData.isAuthentiation());
+				//System.out.println(smartcity.HomePage.userData.isAuthentiation());
+				String fname=txtFirstName.getText(),lname=txtLastName.getText(),email=txtEmail.getText();
+				String pass1=passwordField.getText(), pass2=passwordField_1.getText();
+				String secques=txtPhoneNo.getText(),secans=txtSecurityAnswer.getText();
+				//System.out.println(pass1);
+				//System.out.println(pass2);
+				if(pass1.equals(pass2)) {
+					try {
+						Class.forName("com.mysql.jdbc.Driver");
+						Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/smartcity", "root", "akshat8138");
+						Statement stmt = conn.createStatement();
+						int result=stmt.executeUpdate("insert into user values('"+fname+"','"+lname+"','"+email+"','"+pass1+"','"+secques+"','"+secans+"');");
+						conn.close();
+						if (result > 0) {
+							JOptionPane.showMessageDialog(null, "User Registered Successfully");
+							User user = new User();
+							user.setVisible(true);
+							dispose();
+						}
+			            else {
+			            	JOptionPane.showMessageDialog(null, "User Cannot Registered");
+			            }
+					}
+					catch(Exception e1) {
+						System.out.println(e1);
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Password doesn't Match");
+				}
 			}
+
 		});
 		btnNewButton_2.setForeground(new Color(255, 192, 203));
 		btnNewButton_2.setFont(new Font("Century", Font.BOLD, 20));
@@ -254,7 +290,7 @@ public class RegisterUser extends JFrame {
 		lblNewLabel_2_1.setBounds(570, 332, 141, 20);
 		getContentPane().add(lblNewLabel_2_1);
 		
-		passwordField = new JPasswordField();
+		
 		passwordField.setBackground(new Color(248, 248, 255));
 		passwordField.setBounds(570, 350, 370, 45);
 		getContentPane().add(passwordField);

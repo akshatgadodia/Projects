@@ -153,7 +153,7 @@ public class Gallery extends JFrame {
 		getContentPane().add(separator);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Educational Institutes", "Resturants and Takeouts", "Hotels", "Hospitals and Pharmacies", "Banks and ATM's", "Gas Stations"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Educational Institutes", "Resturants and Takeouts", "Hotels", "Hospitals and Pharmacies", "Banks and ATM's", "Gas Stations", "Jobs"}));
 		comboBox.setBounds(766, 157, 285, 30);
 		getContentPane().add(comboBox);
 		

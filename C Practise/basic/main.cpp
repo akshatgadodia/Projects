@@ -1,54 +1,43 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <limits.h>
+#define SIZE 10
+int costMartix[10][10]={{0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,1,0,0},{0,1,0,0,0,0},{1,1,0,0,0,0},{1,0,1,0,0,0}};
+int visited[10]={0};
+int stk[10];
+int incre=0;
 
-int checkKeyword(const char *s){
-    char k[32][10] = {"auto","break","case","char","const","continue","default","do","double","else","enum","extern","float","for","goto","if","int","long","register","return","short","signed","sizeof","static","struct","switch","typedef","union","unsigned","void","volatile","while"};
-    int i;
-    for(i=0;i<32;i++)
-        {
-            if(strcmp(s,k[i]) == 0)
-            {
-                return 1;
-            }
+void dfs(int vertex,int n){
+    int i,j=0;
+    for(i=0;i<n;i++){
+        if(costMartix[vertex][i]==1&&!visited[i]){
+            j++;
+            //printf("Row is %d and Column is %d\n",vertex,i);
+            visited[vertex]=1;
+            dfs(i,n);
+            stk[incre++]=vertex;
         }
-    return 0;
+    }
+    if(j==0&&!visited[vertex]){
+            visited[vertex]=1;
+            stk[incre++]=vertex;
+    }
 }
 
 int main()
 {
-     int count=0,intc=0,charc=0;
-     char str[50],ch;
-     FILE *fp=fopen("‪keylist.txt","r");
-     if(fp == NULL)
-     {
-        printf("Error Opening the File\n");
-        exit(1);
-     }
-    while((fscanf(fp,"%s",str)) != EOF)
-    {
-        if(checkKeyword(str)==1){
-            count++;
-            if(strcmp(str,"int")==0){
-                ch=fgetc(fp);
-                while(ch!=' '){
-                    if(ch==',')
-                        intc++;
-                    intc++;
-                }
-            }
-            else if(strcmp(str,"char")==0){
-                ch=fgetc(fp);
-                while(ch!=' '){
-                    if(ch==',')
-                        charc++;
-                    charc++;
-                }
-            }
+    int i,j,n=6;
+    for(i=0;i<n;i++){
+        if(visited[i]==0){
+            printf("Vertex is %d\n",i);
+            dfs(i,n);
         }
     }
-    fclose(fp);
-    printf("No. of Keywords is %d\nNo. of Integers is %d\nNo. of Characters is %d\n",count,intc,charc);
+    printf("Topological Sorting is\n");
+    for(i=incre-1;i>=0;i--){
+        printf("%d\t",stk[i]);
+    }
     return 0;
- }
+}
+

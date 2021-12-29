@@ -27,7 +27,7 @@ public class UserProfile extends JFrame {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
-	private JTextField txtPassword;
+	private JTextField txtPass;
 	
 
 	/**
@@ -178,6 +178,10 @@ public class UserProfile extends JFrame {
 		getContentPane().add(btnNewButton_2);
 		
 		JButton btnNewButton_2_1 = new JButton("Reset Password\r\n");
+		btnNewButton_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton_2_1.setForeground(new Color(255, 192, 203));
 		btnNewButton_2_1.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton_2_1.setBackground(new Color(30, 144, 255));
@@ -248,14 +252,22 @@ public class UserProfile extends JFrame {
 		textField_4.setBackground(new Color(248, 248, 255));
 		textField_4.setBounds(587, 437, 370, 45);
 		getContentPane().add(textField_4);
+
 		
-		txtPassword = new JTextField();
-		txtPassword.setText("PASSWORD\r\n");
-		txtPassword.setEditable(false);
-		txtPassword.setColumns(10);
-		txtPassword.setBackground(new Color(248, 248, 255));
-		txtPassword.setBounds(587, 327, 370, 45);
-		getContentPane().add(txtPassword);
+		txtPass = new JTextField();
+		txtPass.setText("PASS");
+		txtPass.setEditable(false);
+		txtPass.setColumns(10);
+		txtPass.setBackground(new Color(248, 248, 255));
+		txtPass.setBounds(587, 327, 370, 45);
+		getContentPane().add(txtPass);
+		
+		textField.setText(HomePage.userData.getFname());
+		textField_1.setText(HomePage.userData.getLname());
+		textField_2.setText(HomePage.userData.getUserId());
+		textField_3.setText(HomePage.userData.getSecurityQues());
+		textField_4.setText(HomePage.userData.getSecurityAns());
+		txtPass.setText(HomePage.userData.getPassword());
 		
 		setBounds(0, 40, 1543, 1258);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

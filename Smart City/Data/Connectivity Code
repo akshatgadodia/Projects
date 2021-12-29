@@ -1,0 +1,19 @@
+				try {
+						Class.forName("com.mysql.jdbc.Driver");
+						Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/smartcity", "root", "akshat8138");
+						Statement stmt = conn.createStatement();
+						int result=stmt.executeUpdate("insert into user values('"+fname+"','"+lname+"','"+email+"','"+pass1+"','"+secques+"','"+secans+"');");
+						conn.close();
+						if (result > 0) {
+							JOptionPane.showMessageDialog(null, "User Registered Successfully");
+							User user = new User();
+							user.setVisible(true);
+							dispose();
+						}
+			            else {
+			            	JOptionPane.showMessageDialog(null, "User Cannot Registered");
+			            }
+					}
+					catch(Exception e1) {
+						System.out.println(e1);
+					}

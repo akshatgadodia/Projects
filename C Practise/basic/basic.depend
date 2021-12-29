@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
-1633450851 source:d:\_workspace_\c practise\basic\main.cpp
+1639495649 source:d:\_workspace_\c practise\basic\main.cpp
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
-	<ctype.h>
+	<limits.h>
 

@@ -1,7 +1,0 @@
-# depslib dependency file v1.0
-1639495649 source:d:\_workspace_\c practise\basic\main.cpp
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	<limits.h>
-

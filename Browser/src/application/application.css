@@ -1,0 +1,41 @@
+.button{
+	-fx-background-radius:500px;
+}/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.tab-pane{
+	-fx-background-color: RED;
+}
+.tab-header-area{
+	-fx-background-color: WHITE;
+}
+/*.tab-header-background {
+    -fx-background-color: WHITE;
+}*/
+.tab-header{
+	-fx-background-color: BLACK;
+}
+.tab-header-background {
+    -fx-background-color: BLUE;
+}
+#tab {
+	-fx-opacity:0;
+}
+.tab{
+	-fx-background-color: WHITE;
+}
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator 
+{
+	-fx-border-color: CYAN;
+}
+#closebtn{
+	-fx-background-radius:20000px;
+	-fx-border-radius: 20000px;
+	-fx-background-color: WHITE;
+	-fx-max-height: 1px;
+	-fx-max-width: 1px;
+	-fx-padding: 4px;
+	-fx-pref-height: 1px;
+	-fx-pref-width: 1px;
+}
+#ancPane{
+	-fx-background-color: WHITE;
+}

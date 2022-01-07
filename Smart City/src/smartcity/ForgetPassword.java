@@ -26,9 +26,8 @@ import java.sql.Statement;
 
 import javax.swing.JPasswordField;
 
-public class User extends JFrame {
+public class ForgetPassword extends JFrame {
 	private JTextField txtUsername;
-	private JPasswordField passwordField;
 	HomePage HomePage = new HomePage();
 	JLabel userLabel;
 	
@@ -40,7 +39,7 @@ public class User extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					User frame = new User();
+					ForgetPassword frame = new ForgetPassword();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +51,7 @@ public class User extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public User() {
+	public ForgetPassword() {
 		getContentPane().setBackground(new Color(255, 192, 203));
 		getContentPane().setLayout(null);
 		
@@ -88,7 +87,7 @@ public class User extends JFrame {
 					dispose();
 				}
 				else {
-					User user = new User();
+					ForgetPassword user = new ForgetPassword();
 					user.setVisible(true);
 					dispose();
 				}
@@ -154,7 +153,7 @@ public class User extends JFrame {
 		btnNewButton_1_2_1.setBounds(413, 18, 110, 25);
 		getContentPane().add(btnNewButton_1_2_1);
 		
-		JLabel lblNewLabel = new JLabel("User");
+		JLabel lblNewLabel = new JLabel("Forget Password");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setForeground(new Color(128, 0, 0));
 		lblNewLabel.setBounds(0, 80, 1529, 67);
@@ -166,53 +165,12 @@ public class User extends JFrame {
 		separator.setBounds(0, 60, 1529, 33);
 		getContentPane().add(separator);
 		
-		JButton btnNewButton_1_2_1_1 = new JButton("ADMIN LOGIN\r\n");
-		btnNewButton_1_2_1_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				AdminLogin adminLogin = new AdminLogin();
-				adminLogin.setVisible(true);
-				dispose();
-			}
-		});
-		btnNewButton_1_2_1_1.setForeground(new Color(255, 192, 203));
-		btnNewButton_1_2_1_1.setFont(new Font("Century", Font.BOLD, 20));
-		btnNewButton_1_2_1_1.setBackground(new Color(30, 144, 255));
-		btnNewButton_1_2_1_1.setBounds(50, 78, 200, 25);
-		getContentPane().add(btnNewButton_1_2_1_1);
-		
 		txtUsername = new JTextField();
 		txtUsername.setEditable(true);
 		txtUsername.setColumns(10);
 		txtUsername.setBackground(new Color(248, 248, 255));
-		txtUsername.setBounds(572, 219, 370, 45);
+		txtUsername.setBounds(572, 279, 370, 45);
 		getContentPane().add(txtUsername);
-		
-		JButton btnNewButton_2 = new JButton("Register\r\n");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				RegisterUser RegisterUser = new RegisterUser();
-				RegisterUser.setVisible(true);
-				dispose();
-			}
-		});
-		btnNewButton_2.setForeground(new Color(255, 192, 203));
-		btnNewButton_2.setFont(new Font("Century", Font.BOLD, 20));
-		btnNewButton_2.setBackground(new Color(30, 144, 255));
-		btnNewButton_2.setBounds(572, 500, 150, 45);
-		getContentPane().add(btnNewButton_2);
-		
-		JButton btnNewButton_2_1 = new JButton("Forget Password\r\n");
-		btnNewButton_2_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showInputDialog(e);
-			}
-		});
-		btnNewButton_2_1.setForeground(new Color(255, 192, 203));
-		btnNewButton_2_1.setFont(new Font("Century", Font.BOLD, 20));
-		btnNewButton_2_1.setBackground(new Color(30, 144, 255));
-		btnNewButton_2_1.setBounds(732, 500, 210, 45);
-		getContentPane().add(btnNewButton_2_1);
 		
 		userLabel = new JLabel("\r\n");
 		userLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -223,39 +181,44 @@ public class User extends JFrame {
 		if(HomePage.getUserData().isAuthentiation()) {
 		userLabel.setText(HomePage.getUserData().getUserId());}
 		
-		JButton btnNewButton_2_2 = new JButton("LOGIN");
+		JButton btnNewButton_2_2 = new JButton("Reset Password\r\n");
 		btnNewButton_2_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String userid=txtUsername.getText(),password=passwordField.getText(),pass="";
+				String userid=txtUsername.getText();
 				try {
 					Class.forName("com.mysql.jdbc.Driver");
 					Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/smartcity", "root", "akshat8138");
 					Statement stmt = conn.createStatement();
-					ResultSet rs = stmt.executeQuery("select * from user where email='"+userid+"';");
+					ResultSet rs = stmt.executeQuery("select SECURITYQUESTION, SECURITYANSWER from user where email='"+userid+"';");
+					String secques="",secans="",secansbyuser="",newpass="";
 					int k=0;
 					while(rs.next()) {
-						pass=rs.getString("PASSWORD");
-						if (pass.equals(password)&&pass!=null) {
-							//JOptionPane.showMessageDialog(null, "Login Successfully");
-							HomePage.userData.setAuthentiation(true);
-							HomePage.userData.setUserId(userid);
-							userLabel.setText(HomePage.getUserData().getUserId());
-							HomePage.userData.setFname(rs.getString("FIRSTNAME"));
-							HomePage.userData.setLname(rs.getString("LASTNAME"));
-							HomePage.userData.setPassword(pass);
-							HomePage.userData.setSecurityQues(rs.getString("SECURITYQUESTION"));
-							HomePage.userData.setSecurityAns(rs.getString("SECURITYANSWER"));
-							UserProfile user = new UserProfile();
+						secques=rs.getString("SECURITYQUESTION");
+						secans=rs.getString("SECURITYANSWER");
+						break;
+					}
+					if(secques.equals("")) {
+						JOptionPane.showMessageDialog(null, "Enter Correct Username");
+					}
+					else {
+						secansbyuser=JOptionPane.showInputDialog("Your Security Question is "+secques+"?\nPlease Answer Correctly");
+						if(secans.equals(secansbyuser)) {
+							newpass=JOptionPane.showInputDialog("Please Enter Your New Password ");
+							if(newpass.equals("")) {
+								newpass=JOptionPane.showInputDialog("Password Cannot be left Blank\nPlease Enter Your New Password ");
+							}
+							k = stmt.executeUpdate("update user set PASSWORD ='"+newpass+"'where EMAIL='"+userid+"';");
+							JOptionPane.showMessageDialog(null, "Password Updated Successfully");
+							User user = new User();
 							user.setVisible(true);
 							dispose();
-							k=1;
-							break;
 						}
-				    }
-		            if(k==0)
-		            	JOptionPane.showMessageDialog(null, "Password Incorrect");
+						else {
+							JOptionPane.showMessageDialog(null, "Incorrect Answer\nPlease Try Again!");
+						}
+					}
 					conn.close();
-				}
+					}
 				catch(Exception e1) {
 					System.out.println(e1);
 				}
@@ -265,25 +228,14 @@ public class User extends JFrame {
 		btnNewButton_2_2.setForeground(new Color(255, 192, 203));
 		btnNewButton_2_2.setFont(new Font("Century", Font.BOLD, 20));
 		btnNewButton_2_2.setBackground(new Color(30, 144, 255));
-		btnNewButton_2_2.setBounds(674, 400, 162, 56);
+		btnNewButton_2_2.setBounds(645, 463, 230, 56);
 		getContentPane().add(btnNewButton_2_2);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBackground(Color.WHITE);
-		passwordField.setBounds(572, 309, 370, 45);
-		getContentPane().add(passwordField);
-		
-		JLabel lblNewLabel_2 = new JLabel("EMAIL");
+		JLabel lblNewLabel_2 = new JLabel("USERNAME/EMAIL");
 		lblNewLabel_2.setForeground(Color.BLUE);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(572, 201, 100, 20);
+		lblNewLabel_2.setBounds(572, 261, 191, 20);
 		getContentPane().add(lblNewLabel_2);
-		
-		JLabel lblNewLabel_2_1 = new JLabel("PASSWORD\r\n");
-		lblNewLabel_2_1.setForeground(Color.BLUE);
-		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel_2_1.setBounds(572, 291, 100, 20);
-		getContentPane().add(lblNewLabel_2_1);
 		
 		setBounds(0, 40, 1543, 1258);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -258,6 +258,7 @@ public class RegisterUser extends JFrame {
 			            else {
 			            	JOptionPane.showMessageDialog(null, "User Cannot Registered");
 			            }
+						conn.close();
 					}
 					catch(Exception e1) {
 						System.out.println(e1);

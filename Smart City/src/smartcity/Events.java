@@ -13,9 +13,20 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.border.BevelBorder;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.JScrollPane;
 
 public class Events extends JFrame {
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -26,10 +37,12 @@ public class Events extends JFrame {
 				try {
 					Events frame = new Events();
 					frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
+			
 		});
 	}
 
@@ -154,6 +167,73 @@ public class Events extends JFrame {
 		userLabel.setFont(new Font("Algerian", Font.PLAIN, 24));
 		userLabel.setBounds(1180, 0, 312, 67);
 		getContentPane().add(userLabel);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(79, 213, 1372, 555);
+		getContentPane().add(scrollPane);
+		
+		table = new JTable();
+		table.setEnabled(false);
+		table.setForeground(new Color(128, 0, 0));
+		table.setBackground(new Color(255, 192, 203));
+		table.setFont(new Font("Century", Font.PLAIN, 15));
+		table.setRowHeight(30);
+		
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+				{"Smart Photography Workshop", "Wed 5 Jan 2022", "20:00 Hrs", "Online", "Workshop", "1200Rs", "https://in.bookmyshow.com/"},
+			},
+			new String[] {
+				"Event", "Date", "Time", "Venue", "Type", "Price", "Website"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Object.class, Object.class, Object.class, Object.class, Object.class, Object.class, String.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		table.getColumnModel().getColumn(0).setPreferredWidth(200);
+		table.getColumnModel().getColumn(1).setPreferredWidth(80);
+		table.getColumnModel().getColumn(2).setPreferredWidth(80);
+		table.getColumnModel().getColumn(3).setPreferredWidth(80);
+		table.getColumnModel().getColumn(4).setPreferredWidth(80);
+		table.getColumnModel().getColumn(5).setPreferredWidth(80);
+		table.getColumnModel().getColumn(6).setPreferredWidth(150);
+		table.getColumnModel().getColumn(6).setMinWidth(50);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setColumnSelectionAllowed(true);
+		table.setCellSelectionEnabled(true);
+		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		table.getTableHeader().setOpaque(false);
+		table.getTableHeader().setForeground(new Color(255, 192, 203));
+		table.getTableHeader().setBackground(new Color(30, 144, 255));
+		table.getTableHeader().setFont(new Font("Century", Font.BOLD, 20));
+		scrollPane.setBackground(new Color(255, 192, 203));
+		scrollPane.setOpaque(true);
+		scrollPane.setForeground(new Color(255, 192, 203));
+		scrollPane.setViewportView(table);
 		HomePage HomePage = new HomePage();
 		if(HomePage.getUserData().isAuthentiation()) {
 		userLabel.setText(HomePage.getUserData().getUserId());}

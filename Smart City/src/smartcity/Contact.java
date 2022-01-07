@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
@@ -22,6 +24,9 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 
 public class Contact extends JFrame {
 	private JTextField txtFirstName;
@@ -243,6 +248,38 @@ public class Contact extends JFrame {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				if(HomePage.userData.isAuthentiation()) {
+					try {
+						String email=txtEmail.getText(),phoneno=txtPhoneNo.getText(),message=txtrYourMessage.getText();
+						Class.forName("com.mysql.jdbc.Driver");
+						Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/smartcity", "root", "akshat8138");
+						Statement stmt = conn.createStatement();
+						int result=stmt.executeUpdate("insert into contact values('"+email+"','"+phoneno+"','"+message+"');");
+						conn.close();
+						if (result > 0) {
+							JOptionPane.showMessageDialog(null, "Message Sent Successfully");
+							txtrYourMessage.setText("");
+							txtEmail.setText("");
+							txtFirstName.setText("");
+							txtLastName.setText("");
+							txtPhoneNo.setText("");
+						}
+			            else {
+			            	JOptionPane.showMessageDialog(null, "Message Can't be Sent");
+			            }
+					}
+					catch(Exception e1) {
+						System.out.println(e1);
+					}
+				}
+				else {
+					int res=JOptionPane.showConfirmDialog(null, "You need to Login first\nDo you want to login");
+					if(res == 0) {
+						User user = new User();
+						user.setVisible(true);
+						dispose();
+				     } 
+				}
 			}
 		});
 		btnNewButton_2.setForeground(new Color(255, 192, 203));

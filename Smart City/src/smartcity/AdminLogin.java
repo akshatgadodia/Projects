@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
@@ -178,9 +180,17 @@ public class AdminLogin extends JFrame {
 		JButton btnNewButton_2_2 = new JButton("LOGIN");
 		btnNewButton_2_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AdminPanel adminPanel = new AdminPanel();
-				adminPanel.setVisible(true);
-				dispose();
+				String userid=txtUsername.getText();
+				String password=passwordField.getText();
+				if(userid.equals("admin")&&password.equals("smartcity")) {
+					AdminPanel adminPanel = new AdminPanel();
+					adminPanel.setVisible(true);
+					dispose();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Username or Password is Incorrect");
+				}
+				
 			}
 		});
 		btnNewButton_2_2.setForeground(new Color(255, 192, 203));

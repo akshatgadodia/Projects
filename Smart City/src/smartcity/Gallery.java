@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
@@ -18,9 +19,13 @@ import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.BevelBorder;
+import javax.swing.ListSelectionModel;
 
 public class Gallery extends JFrame {
-
+	private JTable table;
 	/**
 	 * Launch the application.
 	 */
@@ -153,7 +158,8 @@ public class Gallery extends JFrame {
 		getContentPane().add(separator);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Educational Institutes", "Resturants and Takeouts", "Hotels", "Hospitals and Pharmacies", "Banks and ATM's", "Gas Stations", "Jobs"}));
+		
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Select The Category", "Educational Institutes", "Resturants and Takeouts", "Hotels", "Hospitals and Pharmacies", "Banks and ATM's", "Gas Stations", "Jobs"}));
 		comboBox.setBounds(766, 157, 285, 30);
 		getContentPane().add(comboBox);
 		
@@ -169,6 +175,92 @@ public class Gallery extends JFrame {
 		userLabel.setFont(new Font("Algerian", Font.PLAIN, 24));
 		userLabel.setBounds(1180, 0, 312, 67);
 		getContentPane().add(userLabel);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setOpaque(true);
+		scrollPane.setForeground(new Color(255, 192, 203));
+		scrollPane.setBackground(new Color(255, 192, 203));
+		scrollPane.setBounds(79, 213, 1372, 555);
+		getContentPane().add(scrollPane);
+		table = new JTable();
+		table.setEnabled(false);
+		table.setForeground(new Color(128, 0, 0));
+		table.setBackground(new Color(255, 192, 203));
+		table.setFont(new Font("Century", Font.PLAIN, 15));
+		table.setRowHeight(30);
+		
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				
+			},
+			new String[] {
+				"Name", "Location", "Contact No", "Email", "Rating", "Website"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				String.class, String.class, Integer.class, String.class, String.class, String.class, String.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		table.getColumnModel().getColumn(0).setPreferredWidth(200);
+		table.getColumnModel().getColumn(1).setPreferredWidth(80);
+		table.getColumnModel().getColumn(2).setPreferredWidth(80);
+		table.getColumnModel().getColumn(3).setPreferredWidth(80);
+		table.getColumnModel().getColumn(4).setPreferredWidth(80);
+		table.getColumnModel().getColumn(5).setPreferredWidth(150);
+		table.getColumnModel().getColumn(5).setMinWidth(50);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setColumnSelectionAllowed(true);
+		table.setCellSelectionEnabled(true);
+		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		table.getTableHeader().setOpaque(false);
+		table.getTableHeader().setForeground(new Color(255, 192, 203));
+		table.getTableHeader().setBackground(new Color(30, 144, 255));
+		table.getTableHeader().setFont(new Font("Century", Font.BOLD, 20));
+		scrollPane.setBackground(new Color(255, 192, 203));
+		scrollPane.setOpaque(true);
+		scrollPane.setForeground(new Color(255, 192, 203));
+		scrollPane.setViewportView(table);
+		scrollPane.setVisible(false);
+		
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int x = comboBox.getSelectedIndex();
+				switch(x) {
+					case 1:
+						System.out.println(comboBox.getSelectedItem());
+						scrollPane.setVisible(true);
+						break;
+					case 2:
+						System.out.println(comboBox.getSelectedItem());
+						scrollPane.setVisible(true);
+						break;
+					case 3:
+						System.out.println(comboBox.getSelectedItem());
+						scrollPane.setVisible(true);
+						break;
+					case 4:
+						System.out.println(comboBox.getSelectedItem());
+						scrollPane.setVisible(true);
+						break;
+					case 5:
+						System.out.println(comboBox.getSelectedItem());
+						scrollPane.setVisible(true);
+						break;
+					case 6:
+						System.out.println(comboBox.getSelectedItem());
+						scrollPane.setVisible(true);
+						break;
+					case 7:
+						System.out.println(comboBox.getSelectedItem());
+						scrollPane.setVisible(true);
+						break;
+				}
+			}
+		});
+		
 		HomePage HomePage = new HomePage();
 		if(HomePage.getUserData().isAuthentiation()) {
 		userLabel.setText(HomePage.getUserData().getUserId());}

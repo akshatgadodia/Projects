@@ -1,0 +1,34 @@
+create database HMS;
+
+
+
+
+use HMS;
+
+
+
+
+create table Receptionist(Username varchar(20), Password varchar(20),ReceptionistId varchar(20), Name varchar(50), Address varchar(100), Gender varchar(8), Qualification varchar(20),DOB varchar(15),  MobileNo varchar(15), EMailId varchar(30), PersonName varchar(50), PhoneNO varchar(15)) ;
+
+create table Accountant(Username varchar(20), Password varchar(20),AccountantId varchar(20), Name varchar(50), Address varchar(400), Gender varchar(8),  Qualification varchar(20), DOB varchar(15), MobileNo varchar(15), EMailId varchar(30), PersonName varchar(50), PhoneNO varchar(15));
+
+create table Doctor(Username varchar(20), Password varchar(20),DoctorId varchar(20),Name varchar(50), Address varchar(400), Gender varchar(8),  Qualification varchar(20),DOB varchar(15), MobileNo varchar(15), EMailId varchar(30), PersonName varchar(50), PhoneNO varchar(15));
+
+create table patient(PatientId varchar(20), Name varchar(50), Age varchar(5), Gender varchar(8), DateOfAdmit varchar(20), DateOfDischarge varchar(20), BloodGroup varchar(5), Address varchar(400), PhoneNo varchar(15), PatientType varchar(8), WardNo varchar(5), BedNo varchar(5));
+
+create table bill(BillNo varchar(10), PatientID varchar(20), Name varchar(50), PatientType varchar(8), WardNo varchar(5), BedNo varchar(5),DateOfAdmit varchar(20), DateOfDischarge varchar(20), TotalAmount varchar(10), ModeOfPayment varchar(20), Narration varchar(100)) ;   
+
+create table appointment(PatientId varchar(20), Name varchar(50),PatientType varchar(10), Date varchar(20), Time Varchar(20), Gender varchar(40), PatientMobileNo varchar(15));
+
+
+
+
+insert into appointment values("PA-1002","Ram Mishra", "Outdoor", "17/05/2018", "05:30 P.M.", "Male", "9655532148");
+
+insert into accountant values("Accountant01","hospital", "AC-1001", "Neha Gupta", "4/258, Vidhyadhar Nagar, Jaipur","Female", "B.Com, M.Com", "12/06/1994", "8514295767", "nehagupta94@gmail.com", "Ramesh Gupta", "9548723651");
+
+insert into Doctor values("Doctor01","hospital", "DO-1001", "Aisha Singh", "S-75, Subash Nagar Shopping Center, Jaipur","Female", "MBBS", "08/02/1986", "9314588257", "singhaisha08@gmail.com", "Umesh Singhh", "8541257836");
+
+insert into Patient values("PA-1001", "Mohan Sharma", "26","Male", "18/04/2018", "26/04/2018", "A+", "Plot No.85, Ram Singh Colony, Jaipur", "7584253684","Indoor","A","A-9");
+
+insert into Receptionist values("Receptionist01","hospital", "RE-1001", "Priya Agarwal", "Flat No.9, Appolo Appartments, Vidhyadhar Nagar, Jaipur","Female", "B.Com", "25/05/1998", "7584836218", "agarwalpriya@gmail.com", "Rohan Agarwal", "7584269158");

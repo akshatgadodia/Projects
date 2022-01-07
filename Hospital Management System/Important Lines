@@ -1,0 +1,1 @@
+jLabel3.setBorder(new EmptyBorder(0,100,0,0));

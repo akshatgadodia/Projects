@@ -20,21 +20,59 @@ import javafx.scene.web.WebEngine;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
-		try {
 			//BorderPane root = new BorderPane();
-			Parent root = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
-			//Parent root = FXMLLoader.load(getClass().getResource("NewTab.fxml"));
-			Scene scene = new Scene(root,400,400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("MyBrowser");
-			Image icon = new Image(getClass().getResourceAsStream("/Image/browsericon.png"));
-		    primaryStage.getIcons().add(icon);
-			primaryStage.setMaximized(true);
-			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+			Parent root; 
+			/*try {
+				//wasteTab.setDisable(true);
+				Process process = java.lang.Runtime.getRuntime().exec("ping www.google.co.in");
+		        int x = process.waitFor();
+		        if (x == 0) {
+		        	root = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
+		        	Scene scene = new Scene(root,400,400);
+		    		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		    		primaryStage.setScene(scene);
+		    		primaryStage.setTitle("MyBrowser");
+		    		Image icon = new Image(getClass().getResourceAsStream("/Image/browsericon.png"));
+		    	    primaryStage.getIcons().add(icon);
+		    		primaryStage.setMaximized(true);
+		    		primaryStage.show();
+		        }
+		        else {
+		        	root = FXMLLoader.load(getClass().getResource("GameTab.fxml"));
+		        	Scene scene = new Scene(root,400,400);
+		    		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		    		primaryStage.setScene(scene);
+		    		primaryStage.setTitle("MyBrowser");
+		    		Image icon = new Image(getClass().getResourceAsStream("/Image/browsericon.png"));
+		    	    primaryStage.getIcons().add(icon);
+		    		primaryStage.setMaximized(true);
+		    		primaryStage.show();
+		        }
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+			try {
+				root = FXMLLoader.load(getClass().getResource("GameTab.fxml"));
+				//= FXMLLoader.load(getClass().getResource("HomePage.fxml"));
+				//Parent root = FXMLLoader.load(getClass().getResource("GameTab.fxml"));
+				//Parent root = FXMLLoader.load(getClass().getResource("NewTab.fxml"));
+				Scene scene = new Scene(root,400,400);
+	    		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+	    		primaryStage.setScene(scene);
+	    		primaryStage.setTitle("MyBrowser");
+	    		Image icon = new Image(getClass().getResourceAsStream("/Image/browsericon.png"));
+	    	    primaryStage.getIcons().add(icon);
+	    		primaryStage.setMaximized(true);
+	    		primaryStage.show();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
+		
 	}
 	
 	public static void main(String[] args) throws IOException {

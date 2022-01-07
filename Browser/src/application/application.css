@@ -16,7 +16,7 @@
 .tab-header-background {
     -fx-background-color: BLUE;
 }
-#tab {
+#wasteTab {
 	-fx-opacity:0;
 }
 .tab{

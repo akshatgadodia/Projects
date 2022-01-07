@@ -85,6 +85,10 @@ public class NewTabController implements Initializable{
 		webEngine = webView.getEngine();
 	}
 	
+	public void exitBrowser() throws IOException {
+		System.exit(1);
+	}
+	
 	public void goBack() throws IOException {
 		WebHistory history = webEngine.getHistory();
 		ObservableList<WebHistory.Entry> entries = history.getEntries();
@@ -133,7 +137,8 @@ public class NewTabController implements Initializable{
 		while(iterator.hasNext()){
 		    WebHistory.Entry entry = iterator.next();
 		    String title = entry.getTitle();
-		    listView.getItems().add(title);
+		    String url = entry.getUrl();
+		    listView.getItems().add(title+"\t"+url);
 		}
 	}
 	

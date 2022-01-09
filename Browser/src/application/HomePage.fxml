@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,9 +13,22 @@
 	<children>
 		<TabPane fx:id="tabPane" prefHeight="1080.0" prefWidth="1540.0" tabClosingPolicy="SELECTED_TAB">
 			<tabs>
-				<Tab fx:id="wasteTab" closable="false" disable="true" text="     " />
+				<Tab fx:id="wasteTab" closable="false" text="" />
 			</tabs>
 		</TabPane>
-		<Button layoutX="5.0" layoutY="2.0" mnemonicParsing="false" onAction="#addTab" text="+" />
+      <MenuBar fx:id="menuFile1" layoutX="0.0" layoutY="2.0">
+         <menus>
+            <Menu fx:id="menuBar1" mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#addTab" text="New Tab" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#playBricksBreaker" text="Play Brcik Break" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem  onAction="#closeBrowser" mnemonicParsing="false" text="Close" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+		<Button layoutX="45.0" layoutY="2.0" mnemonicParsing="false" onAction="#addTab" text="+" />
 	</children>
 </AnchorPane>

@@ -22,7 +22,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 			//BorderPane root = new BorderPane();
 			Parent root; 
-			/*try {
+			try {
 				//wasteTab.setDisable(true);
 				Process process = java.lang.Runtime.getRuntime().exec("ping www.google.co.in");
 		        int x = process.waitFor();
@@ -53,8 +53,8 @@ public class Main extends Application {
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}*/
-			try {
+			}
+			/*try {
 				root = FXMLLoader.load(getClass().getResource("GameTab.fxml"));
 				//= FXMLLoader.load(getClass().getResource("HomePage.fxml"));
 				//Parent root = FXMLLoader.load(getClass().getResource("GameTab.fxml"));
@@ -70,7 +70,7 @@ public class Main extends Application {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
         	
 		
 	}

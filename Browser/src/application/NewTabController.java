@@ -56,6 +56,8 @@ public class NewTabController implements Initializable{
 	@FXML
 	private ListView<String> listView;
 	private double zoom=1.0;
+	private Stage stage;
+	private Scene scene;
 	WebEngine webEngine = new WebEngine();
 	
 	public void zoomOut(ActionEvent e) {

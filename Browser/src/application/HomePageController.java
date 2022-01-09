@@ -50,6 +50,23 @@ public class HomePageController implements Initializable{
 		}
 	}
 	
+	public void closeBrowser(ActionEvent e) {
+		System.exit(3);
+	}
+	
+	public void playBricksBreaker(ActionEvent event) {
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("GameTab.fxml"));
+			//stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+			stage = (Stage)((Scene)tabPane.getScene()).getWindow();
+			scene = new Scene(root);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			stage.setScene(scene);
+			stage.show();
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {

@@ -52,6 +52,14 @@ import javafx.stage.Stage;
 public class GameTabController implements Initializable {
 	@FXML
 	private Canvas canvas;
+	@FXML
+	private Button opebro;
+	@FXML
+	private Button chknet;
+	@FXML
+	private Label infoLabel;
+	@FXML
+	private Label netStatus;
 	
 	private boolean play=false;
 	private int barHeight=7;
@@ -86,6 +94,13 @@ public class GameTabController implements Initializable {
 			canvas.setOnKeyPressed( e -> keyPressed(e));
 			mapGenerator();
 			tl.play();
+			infoLabel.setText("In this game, the player moves a PADDLE from side-to-side to hit a BALL.\n"
+					+ "The game’s objective is to eliminate all of the BRICKS at the top of the \nscreen by hitting them with the BALL.\n"
+					+ "But, if the ball hits the bottom ENCLOSURE, the player loses and the game \nends! \nTo win the game, all the BRICKS must be eliminated.\n"
+					+ "Press Enter Key to play game.\n"
+					+ "Move the paddle with right and left arrow key.\n"
+					+ "Press Space Key to pause the game\n"
+					+ "Press ESC key to exit the game.");
 	       
 		}
 		catch (Exception e1) {
@@ -102,11 +117,29 @@ public class GameTabController implements Initializable {
 				Parent root = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
 				stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 				scene = new Scene(root);
+				scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 				stage.setScene(scene);
 				stage.show();
 	        }
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void checkConn(ActionEvent event) {
+		try {
+			Process process = java.lang.Runtime.getRuntime().exec("ping www.google.co.in");
+	        int x = process.waitFor();
+	        if (x == 0) {
+				netStatus.setText("Internet Status : Connected");
+	        }
+	        else {
+	        	netStatus.setText("Internet Status : Connected");
+	        }
+		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -124,12 +157,12 @@ public class GameTabController implements Initializable {
 	public void draw(GraphicsContext gc) {
 		gc.setFill(Color.BLACK);
 		gc.fillRect(0, 0, 1026, 800);
-		/*gc.setFill(Color.BLUE);
+		gc.setFill(Color.BLUE);
 		gc.fillRect(0,0,5,800);
 		gc.fillRect(0,0,1026,5);
 		gc.fillRect(1021,0,5,800);
 		gc.fillRect(0,795,1026,5);
-		*/
+		
 	}
 	
 	public void borderBricks(GraphicsContext gc) {
@@ -235,6 +268,8 @@ public class GameTabController implements Initializable {
 			drawMap(gc);
 			borderBricks(gc);
 			playConditions(gc);
+			opebro.setDisable(play);
+			chknet.setDisable(play);
 		}
 		else {
 			draw(gc);
@@ -243,6 +278,8 @@ public class GameTabController implements Initializable {
 	        gc.setFill(Color.WHITE);
 	        gc.setFont(new Font("Serif", 30));
 	        gc.fillText(displayText, Math.round(canvas.getWidth()  / 2), Math.round(canvas.getHeight() / 2));
+	        opebro.setDisable(play);
+			chknet.setDisable(play);
 		}
 		
 	}
@@ -262,6 +299,16 @@ public class GameTabController implements Initializable {
         	ballDirY = -2;
         	barPosX = 478;
         	barPosY = 780;
+        }
+        else if (key == KeyCode.SPACE) {  // left arrow key
+        	if(play) {
+        		play=false;
+        		displayText="Game Paused\nPress (Space) to resume\nPress (Enter) to reset";
+        	}
+        	else{
+        		play=true;
+        		displayText="Game Paused\nPress (Space) to resume\nPress (Enter) to reset";
+        	}
         }
         else if (key == KeyCode.ESCAPE) {  // left arrow key
         	System.exit(1);

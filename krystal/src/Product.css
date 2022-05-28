@@ -1,0 +1,9 @@
+/*CSS for Product Page*/
+.pro-page-div{
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+}
+.img-div{
+    padding-right: 10rem;
+}
